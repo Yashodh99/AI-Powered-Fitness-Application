@@ -13,6 +13,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+
     public UserResponseDto register(RegisterRequestDto request) {
 
         if(userRepository.existsByEmail(request.getEmail())){
