@@ -54,4 +54,10 @@ public class ActivityService {
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }
+
+    public ActivityResponseDto getActivityById(String activityId) {
+        return activityRepository.findById(activityId)
+                .map(this::mapToResponse)
+                .orElseThrow(() -> new RuntimeException("Activity not found with id: " +activityId));
+    }
 }
