@@ -6,19 +6,17 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginStart(state) { state.loading = true; state.error = null; },
-    loginSuccess(state, action) {
-      state.loading = false;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    setCredentiasl:(state,action)=>{
+      
+
     },
-    loginFailure(state, action) { state.loading = false; state.error = action.payload; },
+    
     logout(state) { state.user = null; state.token = null; },
   },
 });
 
-// named exports (optional to use elsewhere)
+
 export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
 
-// DEFAULT export = the reducer (this is what the store needs)
+
 export default authSlice.reducer;

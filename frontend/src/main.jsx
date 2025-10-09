@@ -9,7 +9,11 @@ import App from './App'
 // As of React 18
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
+  <AuthProvider authConfig={authConfig}
+  loadingComponent ={<div>loading...</div>}>
+
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider>
+ </AuthProvider>
 )
