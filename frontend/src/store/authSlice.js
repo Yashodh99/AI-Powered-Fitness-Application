@@ -1,25 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-
-
+const initialState = { user: null, token: null, loading: false, error: null };
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState:{
-    user: JSON.parse(localStorage.getItem('user')) || null,
-    token: localStorage.getItem('token') || null,
-    userId: localStorage.getItem('userId') | null
-  }, 
+  initialState,
   reducers: {
-    setCredentials:(state,action) =>{
-      
+    loginStart(state) { state.loading = true; state.error = null; },
+    loginSuccess(state, action) {
+      state.loading = false;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
     },
-    logout:(state) => {
-  
-    },
-    },
- 
+    loginFailure(state, action) { state.loading = false; state.error = action.payload; },
+    logout(state) { state.user = null; state.token = null; },
+  },
 });
 
-export const { setCredentials, logout} = counterSlice.actions
+// named exports (optional to use elsewhere)
+export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
+
+// DEFAULT export = the reducer (this is what the store needs)
 export default authSlice.reducer;
