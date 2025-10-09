@@ -1,0 +1,23 @@
+ni .gitignore -Force
+@"
+# IntelliJ / IDEA
+.idea/
+*.iml
+out/
+*.yml
+*.yaml
+
+
+# Java / Maven
+target/
+*.class
+
+# Node / Vite
+node_modules/
+dist/
+.env
+.env.*
+
+# Misc
+.DS_Store
+"@ | Out-File .gitignore -Encoding UTF8
