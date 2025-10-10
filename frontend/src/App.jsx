@@ -21,9 +21,17 @@ function App() {
   },[token,toeknData,dispatch]);
   return (
     <Router>
-
-       <Button variant = "cantained" color ="#dc004e">LOGIN</Button>
-      </Router>
+      {!token ? (
+       <Button variant = "cantained" color ="#dc004e"
+       onClick={() =>{
+        logIn();
+       }}> LOGIN </Button>
+      ):(
+        <div>
+          <pre>{JSON.stringify(toeknData,null,2)}</pre>
+        </div>
+      )}
+    </Router>
     
   )
 }
