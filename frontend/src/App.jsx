@@ -4,6 +4,13 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
+const ActivitiesPage = () => {
+  return(
+  <Box sx={{p:2, border:'1pz dashed grey'}}>
+  <ActivityForm onActivitiesAdded = {()=> window.location.reload()} />
+  <ActivityList />
+  </Box>);
+}
 
 function App() {
 
@@ -27,9 +34,20 @@ function App() {
         logIn();
        }}> LOGIN </Button>
       ):(
-        <div>
-          <pre>{JSON.stringify(toeknData,null,2)}</pre>
-        </div>
+        // <div>
+        //   <pre>{JSON.stringify(toeknData,null,2)}</pre>
+        //   <pre>{JSON.stringify(token,null,2)}</pre>
+        // </div>
+
+         <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
+      <Routes>
+        <Route path="/activities" element={<ActivitiesPage/>}/>
+        <Route path="/activities/:id" element={<ActivityDetail/>}/>
+
+        <Route path ="/" element={token ? <Navigate to="/activities" replace/> : <div>Welcome Please Login.</div>} />
+      </Routes>
+    </Box>
+
       )}
     </Router>
     
