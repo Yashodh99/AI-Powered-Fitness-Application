@@ -34,12 +34,13 @@ function App() {
         logIn();
        }}> LOGIN </Button>
       ):(
-        // <div>
-        //   <pre>{JSON.stringify(toeknData,null,2)}</pre>
-        //   <pre>{JSON.stringify(token,null,2)}</pre>
-        // </div>
+       
 
-         <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
+         <Box sx={{ p: 2, border: '1px dashed grey' }}>
+          <Button variant = "contained" color ="secondary"
+       onClick={logOut}>
+       
+        Logout </Button>
       <Routes>
         <Route path="/activities" element={<ActivitiesPage/>}/>
         <Route path="/activities/:id" element={<ActivityDetail/>}/>
