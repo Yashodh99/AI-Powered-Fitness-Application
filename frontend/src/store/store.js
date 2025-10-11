@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './authSlice.js'; // note the .js extension
+import authReducer from './authSlice.js'; 
 
-console.log('authReducer type:', typeof authReducer); // should log "function"
+console.log('authReducer type:', typeof authReducer); 
 
 export const store = configureStore({
   reducer: {

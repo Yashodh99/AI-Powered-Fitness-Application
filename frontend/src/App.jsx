@@ -3,6 +3,17 @@ import Button from '@mui/material/Button';
 import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import {AuthContext} from 'react-oauth2-code-pkce';
+import {useDispatch} from 'react-redux';
+import {setCredentials} from './store/authSlice';
+import Box from "@mui/material/Box";
+import ActivityForm from "./components/ActivityForm";
+import ActivityList from "./components/ActivityList";
+import ActivityDetail from "./components/ActivityDetail";
+
+
+
+
 
 const ActivitiesPage = () => {
   return(

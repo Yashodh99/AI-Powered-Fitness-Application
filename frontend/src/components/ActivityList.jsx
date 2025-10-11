@@ -1,45 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import { CardContent, Grid2, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent, Typography, Grid } from '@mui/material';
+import { useNavigate } from 'react-router';
+import { getActivities } from '../services/api';
 
-const ActivityList =() => {
+const ActivityList = () => {
+  const [activities, setActivities] = useState([]);
+  const navigate = useNavigate();
 
-    const[activities, setActivities] = useState([]);
-    const navigate = useNavigate();
+  const fetchActivities = async () => {
+    try {
+      const response = await getActivities();
+      setActivities(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    const fetchActivities = async() => {
-        try{
-            const response = await getActivities();
-            setActivities(response.data);
+  useEffect(() => {
+    fetchActivities();
+  }, []);
 
-        }catch(error){
-            console.error(error);
+  return (
+    <Grid container spacing={2}>
+      {activities.map((activity) => (
+        <Grid item xs={12} sm={6} md={4} key={activity.id}>
+          <Card
+            sx={{ cursor: 'pointer' }}
+            onClick={() => navigate(`/activities/${activity.id}`)}
+          >
+            <CardContent>
+              <Typography variant="h6">{activity.type}</Typography>
+              <Typography>Duration: {activity.duration}</Typography>
+              <Typography>Calories: {activity.caloriesBurned}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
 
-        }
-    };
-
-    useEffect(()=>{
-        fetchActivities();
-    },[]);
-    return(
-
-        <Grid2 container spacing={2}>
-            {activities.map((activity)=>(
-                <Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Card sx = {{cursor: 'pointer'}}
-                    onClick={()=> navigate(`/activities/${activity.id}`)}>
-                        <CardContent>
-                            <Typography variant='h6'>activity.type</Typography>
-                            <Typography>Duration: {activity.duration}</Typography>
-                            <Typography>Calories: {activity.caloriesBurned}</Typography>
-                        </CardContent>
-
-                    </Card>
-                    </Grid2>
-            ))}
-
-    
-</Grid2>
-    )
-}
-
-export default ActivityList
+export default ActivityList;
