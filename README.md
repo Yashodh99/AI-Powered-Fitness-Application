@@ -29,7 +29,7 @@ The system follows a **microservices architecture**, ensuring scalability, flexi
 | **PostgreSQL** | Relational database | Reliable, scalable, and supports complex data queries. |
 | **MongoDB** | NoSQL database | Stores activity logs and flexible AI insights. |
 | **RabbitMQ** | Message broker | Handles asynchronous communication between microservices. |
-| **Keycloak** | Authentication & authorization | Provides secure login with OAuth2 / OpenID Connect. |
+| **Keycloak** | Authentication & authorization | Provides secure login with OAuth2 . |
 | **Docker** | Containerization | Makes deployment easier across different environments. |
 
 ---
