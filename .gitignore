@@ -4,8 +4,7 @@ ni .gitignore -Force
 .idea/
 *.iml
 out/
-*.yml
-*.yaml
+
 
 
 # Java / Maven
