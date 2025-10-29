@@ -270,30 +270,29 @@ public class ActivityAiService {
         }
     }
 
-    /** Accepts plain JSON or Markdown fenced JSON (```json ... ```). */
+
     private String extractJsonBlock(String text) {
         String t = text == null ? "" : text.trim();
 
-        // If it already looks like JSON, return as-is
+
         if (t.startsWith("{") || t.startsWith("[")) {
             return t;
         }
 
-        // Try to peel Markdown code fences
+
         Pattern fenced = Pattern.compile("```(?:json)?\\s*(.*?)\\s*```", Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
         Matcher m = fenced.matcher(t);
         if (m.find()) {
             return m.group(1).trim();
         }
 
-        // Also handle the rare triple-quote style
+
         Pattern tripleQuotes = Pattern.compile("'''(?:json)?\\s*(.*?)\\s*'''", Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
         Matcher m2 = tripleQuotes.matcher(t);
         if (m2.find()) {
             return m2.group(1).trim();
         }
 
-        // Last resort: return original; the caller will likely fail parsing and fall back
         return t;
     }
 
